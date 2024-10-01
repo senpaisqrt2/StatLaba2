@@ -77,4 +77,4 @@ margin_of_error = t_value * sample_std / np.sqrt(n)
 
 # Доверительный интервал для математического ожидания
 confidence_interval = (sample_mean - margin_of_error, sample_mean + margin_of_error)
-confidence_interval
+print(f"Доверительный интервал: {confidence_interval}")
