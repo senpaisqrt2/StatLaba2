@@ -5,7 +5,7 @@ import scipy.stats as stats
 
 # Чтение данных из файла "Москва_2021.txt"
 # Здесь мы считываем данные о преступлениях и возрастах преступников из файла
-file_path = "/mnt/data/Москва_2021.txt"
+file_path = "C:\\Users\\nexti\\Desktop\\Uni\\3 course\\Stat\\Laba2\\Москва_2021.txt"
 with open(file_path, 'r') as file:
     crime_ages = [int(line.strip()) for line in file]
 
@@ -76,5 +76,5 @@ sample_std = np.std(sample_means, ddof=1)  # Стандартное отклон
 margin_of_error = t_value * sample_std / np.sqrt(n)
 
 # Доверительный интервал для математического ожидания
-confidence_interval = (sample_mean - margin_of_error, sample_mean + margin_of_error)
+confidence_interval = (float(sample_mean - margin_of_error), float(sample_mean + margin_of_error))
 print(f"Доверительный интервал: {confidence_interval}")
