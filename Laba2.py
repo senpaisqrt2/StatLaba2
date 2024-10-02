@@ -83,7 +83,6 @@ plt.show()
 t_value = stats.t.ppf((1 + gamma) / 2, df=n-1)  # Критическое значение t для доверительной вероятности 0.95
 
 # Доверительный интервал для математического ожидания
-# confidence_interval = (float(sample_mean - margin_of_error), float(sample_mean + margin_of_error))
 print(f"Доверительный интервал: {confidence_interval}")
 
 # Вывод дополнительной информации
