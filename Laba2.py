@@ -22,10 +22,10 @@ def calculate_sample_size(sigma, delta, gamma, z_value):
 gamma = 0.95  # Доверительная вероятность
 delta = 3     # Точность оценки математического ожидания (в годах)
 z_value = stats.norm.ppf((1 + gamma) / 2)  # Квантиль нормального распределения для доверительной вероятности 0.95
-sigma = np.std(crime_ages, ddof=1)  # Стандартное отклонение выборки на основе всех данных о возрастах
+sigma = np.std(crime_ages, ddof=0)  # Стандартное отклонение выборки на основе всех данных о возрастах !!!
 
 # Расчет объема выборки с использованием формулы для нормального распределения
-n = int(calculate_sample_size(sigma, delta, gamma, z_value))
+n = int(np.ceil(calculate_sample_size(sigma, delta, gamma, z_value)))
 print(f"Рассчитанный объем выборки: {n}")
 
 # Генерация 36 выборок и расчет выборочных средних
@@ -78,3 +78,9 @@ margin_of_error = t_value * sample_std / np.sqrt(n)
 # Доверительный интервал для математического ожидания
 confidence_interval = (float(sample_mean - margin_of_error), float(sample_mean + margin_of_error))
 print(f"Доверительный интервал: {confidence_interval}")
+
+# Вывод дополнительной информации
+print(f"Точечная оценка математического ожидания: {sample_mean:.2f}")
+print(f"Точность (погрешность): {margin_of_error:.2f}")
+print(f"Математическое ожидание находится в интервале: {confidence_interval}")
+print(f"Доверительный интервал: [{confidence_interval[0]:.2f}, {confidence_interval[1]:.2f}]")
