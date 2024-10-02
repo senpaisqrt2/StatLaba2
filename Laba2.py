@@ -31,6 +31,18 @@ print(f"Рассчитанный объем выборки: {n}")
 # Генерация 36 выборок и расчет выборочных средних
 # Мы создаем 36 случайных выборок с повторениями из исходных данных и находим среднее для каждой выборки
 sample_means = [np.mean(np.random.choice(crime_ages, size=n, replace=True)) for _ in range(36)]
+sample = np.random.choice(crime_ages, size=n, replace=True)
+
+# Расчет выборочного среднего и стандартного отклонения
+sample_mean = np.mean(sample)
+sample_std = np.std(sample, ddof=1)
+
+# Расчет доверительного интервала с использованием t-распределения
+t_value = stats.t.ppf((1 + gamma) / 2, df=n-1)
+margin_of_error = t_value * sample_std / np.sqrt(n)
+
+# Доверительный интервал для математического ожидания
+confidence_interval = (float(sample_mean - margin_of_error), float(sample_mean + margin_of_error))
 
 # Построение интервального ряда распределения выборочных средних
 # Находим минимальное и максимальное значение выборочных средних и округляем их для построения гистограммы
@@ -76,7 +88,7 @@ sample_std = np.std(sample_means, ddof=1)  # Стандартное отклон
 margin_of_error = t_value * sample_std / np.sqrt(n)
 
 # Доверительный интервал для математического ожидания
-confidence_interval = (float(sample_mean - margin_of_error), float(sample_mean + margin_of_error))
+# confidence_interval = (float(sample_mean - margin_of_error), float(sample_mean + margin_of_error))
 print(f"Доверительный интервал: {confidence_interval}")
 
 # Вывод дополнительной информации
